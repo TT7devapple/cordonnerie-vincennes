@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cordonnerie Vincennes</title>
+<meta name="description" content="Cordonnerie Vincennes, 55 avenue de Paris. Réparation de chaussures, talon minute, cuir, double de clés, tampons, plaques d'immatriculation et gravure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,500;62..125,600;62..125,800;62..125,900&family=DM+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #F2F3F5;
+    --surface: #FFFFFF;
+    --ink: #15181D;
+    --muted: #59616C;
+    --line: #D3D7DD;
+    --stamp: #C8321E;
+    --stamp-ink: #FFFFFF;
+    --brass: #BF9A3A;
+    --steel: #46505C;
+    --ok: #2C6E43;
+    --closed: #B23A26;
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #111317;
+      --surface: #1B1E24;
+      --ink: #EDEFF2;
+      --muted: #A1A8B2;
+      --line: #313640;
+      --stamp: #F0664F;
+      --stamp-ink: #160B08;
+      --brass: #D9B75E;
+      --steel: #9AA6B4;
+      --ok: #7CC895;
+      --closed: #F08A76;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #111317;
+    --surface: #1B1E24;
+    --ink: #EDEFF2;
+    --muted: #A1A8B2;
+    --line: #313640;
+    --stamp: #F0664F;
+    --stamp-ink: #160B08;
+    --brass: #D9B75E;
+    --steel: #9AA6B4;
+    --ok: #7CC895;
+    --closed: #F08A76;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+  body { margin: 0; background: var(--ground); color: var(--ink); font: 400 1rem/1.6 var(--sans); font-stretch: 100%; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { max-width: 1140px; margin-inline: auto; padding-inline: 20px; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--stamp); outline-offset: 3px; border-radius: 2px; }
+  h1, h2, h3 { margin: 0; font-stretch: 125%; font-weight: 900; line-height: .95; letter-spacing: -.01em; text-transform: uppercase; text-wrap: balance; }
+  .label { font: 500 .74rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+  .proto { background: var(--ink); color: var(--ground); font: 500 .74rem/1.4 var(--mono); letter-spacing: .06em; text-align: center; padding: 8px 16px; }
+
+  header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--ground) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+  .brand { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .brand .mark { width: 34px; height: 34px; border: 2.5px solid var(--stamp); color: var(--stamp); display: grid; place-items: center; font: 900 .95rem/1 var(--sans); font-stretch: 125%; transform: rotate(-6deg); border-radius: 3px; }
+  .brand b { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 1.02rem; letter-spacing: .01em; }
+  nav.links { display: flex; gap: 24px; }
+  nav.links a { text-decoration: none; font-weight: 500; font-size: .95rem; color: var(--muted); }
+  nav.links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--ink); background: var(--ink); color: var(--ground); font: 600 .95rem/1 var(--sans); padding: 12px 18px; text-decoration: none; cursor: pointer; border-radius: 4px; transition: transform .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn.accent { background: var(--stamp); border-color: var(--stamp); color: var(--stamp-ink); }
+  @media (max-width: 760px) { nav.links { display: none; } .brand b { display: none; } header.top .btn { padding: 10px 14px; font-size: .88rem; } }
+
+  /* Hero */
+  .hero { padding-block: clamp(44px, 7vw, 96px) clamp(48px, 7vw, 88px); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .hero h1 { font-size: clamp(2.9rem, 8.6vw, 7rem); }
+  .hero h1 .thin { display: block; font-stretch: 62%; font-weight: 500; color: var(--steel); }
+  .hero .lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); max-width: 42ch; margin: 24px 0 28px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Coup de tampon */
+  .stamp-zone { display: grid; place-items: center; min-height: 260px; }
+  .stamp {
+    border: 5px solid var(--stamp); color: var(--stamp); padding: 20px 26px 18px; text-align: center;
+    transform: rotate(-8deg); border-radius: 8px; position: relative; max-width: 100%;
+    -webkit-mask-image: repeating-radial-gradient(circle at 30% 40%, #000 0 3px, rgba(0,0,0,.82) 3px 4px);
+    mask-image: repeating-radial-gradient(circle at 30% 40%, #000 0 3px, rgba(0,0,0,.82) 3px 4px);
+  }
+  .stamp::before { content: ""; position: absolute; inset: 6px; border: 1.5px solid var(--stamp); border-radius: 4px; }
+  .stamp .top { font: 500 .8rem/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; }
+  .stamp .big { font: 900 clamp(2.6rem, 6vw, 3.8rem)/.9 var(--sans); font-stretch: 125%; text-transform: uppercase; margin: 10px 0 8px; }
+  .stamp .bot { font: 500 .8rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  @keyframes thump { 0% { transform: rotate(-8deg) scale(1.25); opacity: 0; } 60% { transform: rotate(-8deg) scale(.97); opacity: 1; } 100% { transform: rotate(-8deg) scale(1); opacity: 1; } }
+  .stamp { animation: thump .45s cubic-bezier(.3,.7,.3,1) .35s both; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .stamp-zone { min-height: 0; justify-items: start; padding-left: 8px; } }
+
+  /* Bandeau infos */
+  .strip { background: var(--ink); color: var(--ground); }
+  .strip .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .strip .cell { padding: 18px 20px 18px 0; display: grid; gap: 6px; }
+  .strip .cell + .cell { border-left: 1px solid color-mix(in srgb, var(--ground) 20%, var(--ink)); padding-left: 20px; }
+  .strip .label { color: color-mix(in srgb, var(--ground) 60%, var(--ink)); }
+  .strip .val { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .strip .status.open { color: #7CC895; }
+  .strip .status.shut { color: #F08A76; }
+  @media (max-width: 860px) {
+    .strip .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .strip .cell:nth-child(3) { border-left: 0; padding-left: 0; }
+    .strip .cell:nth-child(n+3) { border-top: 1px solid color-mix(in srgb, var(--ground) 20%, var(--ink)); }
+  }
+  @media (max-width: 480px) {
+    .strip .wrap { grid-template-columns: 1fr; }
+    .strip .cell + .cell { border-left: 0; padding-left: 0; border-top: 1px solid color-mix(in srgb, var(--ground) 20%, var(--ink)); }
+  }
+
+  section.block { padding-block: clamp(60px, 8vw, 108px); }
+  .sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: end; margin-bottom: 40px; }
+  .sec-head h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+  .sec-head p { margin: 0; color: var(--muted); max-width: 46ch; justify-self: end; }
+  @media (max-width: 760px) { .sec-head { grid-template-columns: 1fr; } .sec-head p { justify-self: start; } }
+
+  /* Deux ateliers en un */
+  .families { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 48px); }
+  .family h3 { font-size: 1.5rem; display: flex; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 3px solid var(--ink); }
+  .family h3 svg { width: 30px; height: 30px; color: var(--stamp); flex: none; }
+  .tags { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+  /* Étiquettes porte-clés */
+  .tag { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; background: var(--surface); border: 1px solid var(--line); border-radius: 4px 22px 22px 4px; padding: 14px 44px 14px 18px; }
+  .tag::after { content: ""; position: absolute; right: 16px; top: 50%; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--line); background: var(--ground); transform: translateY(-50%); }
+  .tag strong { font-weight: 700; font-size: 1.05rem; }
+  .tag .when { font: 500 .72rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--stamp); white-space: nowrap; }
+  .tag p { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: .93rem; }
+  @media (max-width: 760px) { .families { grid-template-columns: 1fr; } }
+
+  /* Talon minute : mise en avant */
+  .minute { background: var(--stamp); color: var(--stamp-ink); }
+  .minute .wrap { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(24px, 5vw, 64px); align-items: center; padding-block: clamp(44px, 6vw, 72px); }
+  .clock { width: clamp(110px, 16vw, 170px); height: auto; }
+  .minute h2 { font-size: clamp(2.2rem, 6vw, 4.4rem); }
+  .minute p { margin: 14px 0 0; max-width: 52ch; font-size: 1.08rem; }
+  @keyframes sweep { to { transform: rotate(360deg); } }
+  .clock .hand { transform-origin: 60px 60px; animation: sweep 6s linear infinite; }
+  @media (max-width: 600px) { .minute .wrap { grid-template-columns: 1fr; } }
+
+  /* Horaires + accès */
+  .visit { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); }
+  .hours-wrap { overflow-x: auto; }
+  .hours { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: .92rem; font-variant-numeric: tabular-nums; }
+  .hours td { padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .hours td + td { text-align: right; padding-left: 16px; }
+  .hours tr.today td { color: var(--stamp); font-weight: 500; }
+  .hours tr.today td:first-child::after { content: " ·\00a0aujourd'hui"; font-size: .72rem; letter-spacing: .06em; }
+  .hours tr.off td + td { color: var(--muted); }
+  .contact { display: grid; gap: 26px; align-content: start; }
+  .contact .big { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height: 1; }
+  .phone-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .phone { font: 500 clamp(1.4rem, 3vw, 1.8rem)/1 var(--mono); user-select: all; font-variant-numeric: tabular-nums; }
+  .copy { font: 500 .8rem/1 var(--mono); background: transparent; color: var(--ink); border: 1px solid var(--line); padding: 8px 12px; cursor: pointer; border-radius: 4px; }
+  .copy:hover { border-color: var(--ink); }
+  .perks { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+  .perks li { font: 500 .78rem/1 var(--mono); border: 1px solid var(--line); padding: 8px 10px; border-radius: 4px; color: var(--muted); }
+  @media (max-width: 760px) { .visit { grid-template-columns: 1fr; } }
+
+  footer.site { border-top: 3px solid var(--ink); padding-block: 28px 40px; }
+  footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; color: var(--muted); font-size: .88rem; }
+  footer.site b { color: var(--ink); font-weight: 800; font-stretch: 125%; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="proto">Maquette — proposition de site pour la Cordonnerie Vincennes</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Cordonnerie Vincennes, accueil"><span class="mark" aria-hidden="true">CV</span><b>Cordonnerie Vincennes</b></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#minute">Talon minute</a>
+      <a href="#venir">Horaires &amp; accès</a>
+    </nav>
+    <a class="btn" href="tel:+33143287393">01 43 28 73 93</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="label" style="margin-bottom:18px">55 avenue de Paris · Vincennes</div>
+        <h1>Cordonnerie <span class="thin">&amp; multiservice</span></h1>
+        <p class="lede">Chaussures, cuir, clés, tampons, plaques et gravure&nbsp;: un seul comptoir sur l'avenue de Paris pour tout ce qui se répare, se copie ou se grave.</p>
+        <div class="ctas">
+          <a class="btn accent" href="#services">Voir les services</a>
+          <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Cordonnerie+Vincennes+55+avenue+de+Paris+94300+Vincennes" target="_blank" rel="noopener">Itinéraire</a>
+        </div>
+      </div>
+      <div class="stamp-zone">
+        <div class="stamp" aria-hidden="true">
+          <div class="top">Artisan cordonnier</div>
+          <div class="big">Fait<br>main</div>
+          <div class="bot">Vincennes · 94300</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <div class="cell"><span class="label">En ce moment</span><span class="val"><span class="status" id="status">—</span></span></div>
+      <div class="cell"><span class="label">Adresse</span><span class="val">55 av. de Paris</span></div>
+      <div class="cell"><span class="label">Téléphone</span><span class="val">01 43 28 73 93</span></div>
+      <div class="cell"><span class="label">Ouvert</span><span class="val">Du lundi au samedi</span></div>
+    </div>
+  </div>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="label" style="margin-bottom:14px">Services</div>
+          <h2>Deux ateliers, un comptoir</h2>
+        </div>
+        <p>Déposez vos chaussures et faites faire vos clés dans la foulée. Le prix est annoncé au comptoir avant toute intervention.</p>
+      </div>
+
+      <div class="families">
+        <div class="family">
+          <h3>
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h13c1.9 0 3.6-.8 5-2.1l2.3-2.3c1-1 2.6-1 3.6 0s1 2.6 0 3.6L25.6 20.5V26H3v-6Z"/></svg>
+            Cordonnerie &amp; cuir
+          </h3>
+          <ul class="tags">
+            <li class="tag"><strong>Réparation de chaussures</strong><span class="when">Ville · bottes · baskets</span><p>Semelles, talons, patins, coutures&nbsp;: remise en état de vos paires.</p></li>
+            <li class="tag"><strong>Talon minute</strong><span class="when">Pendant l'attente</span><p>Remplacement des bonbouts de talons, rapidement, au comptoir.</p></li>
+            <li class="tag"><strong>Glaçage &amp; teinture</strong><span class="when">Cuir lisse</span><p>Glaçage pour un brillant miroir, teinture pour raviver ou changer une couleur.</p></li>
+            <li class="tag"><strong>Sacs &amp; vêtements en cuir</strong><span class="when">Maroquinerie</span><p>Anses, coutures, fermetures&nbsp;: réparation de sacs, blousons et ceintures.</p></li>
+          </ul>
+        </div>
+        <div class="family">
+          <h3>
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="16" r="6"/><circle cx="10" cy="16" r="1.6"/><path d="M16 16h13v3.5h-2.5V23h-3.5v-3.5H21"/></svg>
+            Clés, tampons &amp; gravure
+          </h3>
+          <ul class="tags">
+            <li class="tag"><strong>Double de clés</strong><span class="when">Maison · boîte aux lettres</span><p>Reproduction de clés au comptoir. Apportez la clé d'origine.</p></li>
+            <li class="tag"><strong>Tampons</strong><span class="when">Pros · associations</span><p>Tampons encreurs personnalisés&nbsp;: adresse, signature, logo.</p></li>
+            <li class="tag"><strong>Plaques d'immatriculation</strong><span class="when">Auto · moto</span><p>Fabrication de plaques. Pensez à apporter la carte grise du véhicule.</p></li>
+            <li class="tag"><strong>Gravure</strong><span class="when">Plaques · objets</span><p>Plaques de boîte aux lettres, interphone, médailles et petits objets.</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="minute" id="minute">
+    <div class="wrap">
+      <svg class="clock" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+        <circle cx="60" cy="60" r="54" stroke="currentColor" stroke-width="5"/>
+        <g stroke="currentColor" stroke-width="4" stroke-linecap="round">
+          <path d="M60 14v10M60 96v10M14 60h10M96 60h10"/>
+        </g>
+        <path d="M60 60V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+        <path class="hand" d="M60 60h30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="60" cy="60" r="5" fill="currentColor"/>
+      </svg>
+      <div>
+        <h2>Talon minute</h2>
+        <p>Un talon usé la veille d'un rendez-vous&nbsp;? Passez au 55 avenue de Paris&nbsp;: le remplacement des bonbouts se fait pendant que vous attendez.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="venir">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="label" style="margin-bottom:14px">Horaires &amp; accès</div>
+          <h2>Sur l'avenue de Paris</h2>
+        </div>
+        <p>Sans rendez-vous, aux heures d'ouverture. Boutique accessible aux personnes à mobilité réduite.</p>
+      </div>
+      <div class="visit">
+        <div class="hours-wrap">
+          <table class="hours" aria-label="Horaires d'ouverture">
+            <tbody id="hours">
+              <tr data-d="1"><td>Lundi</td><td>08:30 – 13:00 · 15:00 – 19:00</td></tr>
+              <tr data-d="2"><td>Mardi</td><td>08:30 – 13:00 · 15:00 – 19:00</td></tr>
+              <tr data-d="3"><td>Mercredi</td><td>08:30 – 13:00 · 15:00 – 19:00</td></tr>
+              <tr data-d="4"><td>Jeudi</td><td>08:30 – 13:00 · 15:00 – 19:00</td></tr>
+              <tr data-d="5"><td>Vendredi</td><td>08:30 – 13:00 · 15:00 – 19:00</td></tr>
+              <tr data-d="6"><td>Samedi</td><td>10:00 – 13:00 · 14:00 – 18:00</td></tr>
+              <tr data-d="0" class="off"><td>Dimanche</td><td>Fermé</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="contact">
+          <div>
+            <div class="label" style="margin-bottom:10px">Adresse</div>
+            <div class="big">55 avenue de Paris<br>94300 Vincennes</div>
+          </div>
+          <div>
+            <div class="label" style="margin-bottom:10px">Téléphone</div>
+            <div class="phone-row">
+              <span class="phone" id="phone">01 43 28 73 93</span>
+              <button class="copy" id="copy" type="button">Copier</button>
+            </div>
+          </div>
+          <ul class="perks" aria-label="Accès">
+            <li>Accès PMR</li>
+            <li>Stationnement</li>
+            <li>Sans rendez-vous</li>
+          </ul>
+          <div><a class="btn accent" href="https://www.google.com/maps/search/?api=1&query=Cordonnerie+Vincennes+55+avenue+de+Paris+94300+Vincennes" target="_blank" rel="noopener">Ouvrir dans Google Maps</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <b>Cordonnerie Vincennes</b>
+    <span>55 avenue de Paris, 94300 Vincennes · 01 43 28 73 93</span>
+    <span>RCS Créteil 851 900 076</span>
+  </div>
+</footer>
+
+<script>
+  // Ouvert / fermé, à l'heure de Paris
+  (function () {
+    var wk = [[510, 780], [900, 1140]];
+    var slots = { 0: [], 1: wk, 2: wk, 3: wk, 4: wk, 5: wk, 6: [[600, 780], [840, 1080]] };
+    var p = {};
+    try {
+      new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false })
+        .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+    } catch (e) {}
+    var map = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    var now = new Date();
+    var d = p.weekday in map ? map[p.weekday] : now.getDay();
+    var m = p.hour ? (+p.hour % 24) * 60 + +p.minute : now.getHours() * 60 + now.getMinutes();
+    function hm(v) { var h = Math.floor(v / 60), mm = v % 60; return h + 'h' + (mm ? (mm < 10 ? '0' : '') + mm : ''); }
+
+    var s = document.getElementById('status'), cur = null;
+    slots[d].forEach(function (r) { if (m >= r[0] && m < r[1]) cur = r; });
+    if (cur) { s.className = 'status open'; s.textContent = 'Ouvert · jusqu\'à ' + hm(cur[1]); }
+    else {
+      var txt = null;
+      slots[d].forEach(function (r) { if (!txt && m < r[0]) txt = 'rouvre à ' + hm(r[0]); });
+      if (!txt) {
+        var names = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+        for (var k = 1; k <= 7; k++) {
+          var nd = (d + k) % 7;
+          if (slots[nd].length) { txt = 'ouvre ' + (k === 1 ? 'demain' : names[nd]) + ' à ' + hm(slots[nd][0][0]); break; }
+        }
+      }
+      s.className = 'status shut'; s.textContent = 'Fermé · ' + txt;
+    }
+    var row = document.querySelector('#hours tr[data-d="' + d + '"]');
+    if (row) row.classList.add('today');
+  })();
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var btn = this, el = document.getElementById('phone');
+    function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copier'; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      done('Sélectionné');
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(el.textContent).then(function () { done('Copié'); }, fallback);
+    else fallback();
+  });
+</script>
+</body>
+</html>
